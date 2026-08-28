@@ -1,146 +1,127 @@
 <!DOCTYPE html>
-<html lang="sk">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Thank You</title>
-  
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: linear-gradient(135deg, #0f172a, #1e293b);
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      color: #ffffff;
-      text-align: center;
-      overflow: hidden;
-    }
-
-    .card {
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      padding: 3rem 2rem;
-      border-radius: 20px;
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-      max-width: 480px;
-      width: 90%;
-    }
-
-    /* Animovaný nápis Thank You */
-    .thank-you-title {
-      font-size: 3.5rem;
-      font-weight: 800;
-      background: linear-gradient(45deg, #38bdf8, #818cf8, #c084fc);
-      background-clip: text;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 1rem;
-      opacity: 0;
-      transform: scale(0.5);
-      animation: popIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards,
-                 pulse 3s ease-in-out infinite 0.8s;
-    }
-
-    .message {
-      font-size: 1.125rem;
-      color: #94a3b8;
-      margin-bottom: 2rem;
-      line-height: 1.6;
-      opacity: 0;
-      animation: fadeIn 0.8s ease-out 0.4s forwards;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 0.8rem 2rem;
-      font-size: 1rem;
-      font-weight: 600;
-      color: #ffffff;
-      background: linear-gradient(135deg, #6366f1, #4f46e5);
-      border: none;
-      border-radius: 50px;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
-      opacity: 0;
-      animation: fadeIn 0.8s ease-out 0.6s forwards;
-    }
-
-    .btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(99, 102, 241, 0.6);
-    }
-
-    /* Kľúčové snímky pre animácie */
-    @keyframes popIn {
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
-    }
-
-    @keyframes pulse {
-      0%, 100% {
-        transform: scale(1);
-      }
-      50% {
-        transform: scale(1.05);
-      }
-    }
-
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-      }
-    }
-  </style>
+  <title>In Loving Memory - MemorialQR</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <div class="card">
-    <h1 class="thank-you-title">Thank You!</h1>
-    <p class="message">Your message has been sent successfully. We will get back to you as soon as possible.</p>
-    <a href="https://abcweb.ing" class="btn">Back to Main Page</a>
-  </div>
+  <header class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="portrait-wrapper">
+        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=400" alt="Arthur Pendelton" class="portrait">
+      </div>
+      <p class="subtitle">In Loving Memory Of</p>
+      <h1>Arthur Pendelton</h1>
+      <p class="dates">1942 – 2021</p>
+      <blockquote class="quote">"My heart, my love, and my lifetime of memories stay with you forever."</blockquote>
+    </div>
+  </header>
 
-  <script>
-    // Spustenie konfiet po načítaní stránky
-    window.addEventListener('DOMContentLoaded', () => {
-      // Prvý výstreL
-      confetti({
-        particleCount: 100,
-        spread: 70,
-        origin: { y: 0.6 }
-      });
+  <main class="container">
 
-      // Druhá jemná vlna z bokov
-      setTimeout(() => {
-        confetti({
-          particleCount: 50,
-          angle: 60,
-          spread: 55,
-          origin: { x: 0 }
-        });
-        confetti({
-          particleCount: 50,
-          angle: 120,
-          spread: 55,
-          origin: { x: 1 }
-        });
-      }, 400);
-    });
-  </script>
+    <section class="section biography">
+      <h2>Life Story</h2>
+      <div class="bio-card">
+        <h3>Early Life & Youth</h3>
+        <p>Arthur was born in a quiet country town where he spent his youth exploring nature and learning the values of hard work, humility, and kindness from his family.</p>
+      </div>
+      <div class="bio-card">
+        <h3>Family & Marriage</h3>
+        <p>In 1968, he married the love of his life, Eleanor. Together they built a warm, welcoming home filled with laughter, dedication, and two wonderful children.</p>
+      </div>
+      <div class="bio-card">
+        <h3>Passions & Legacy</h3>
+        <p>An avid gardener and passionate woodworker, Arthur dedicated his retired years to crafting wooden toys for his grandchildren and cultivating beautiful roses.</p>
+      </div>
+    </section>
 
+    <section class="section timeline-section">
+      <h2>Key Milestones</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="year">1942</span>
+            <p>Born in Oxford, United Kingdom</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="year">1964</span>
+            <p>Graduated with First-Class Honors in Engineering</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="year">1968</span>
+            <p>Married Eleanor Vance</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="year">1995</span>
+            <p>Welcomed his first grandchild</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section gallery-section">
+      <h2>Memory Gallery</h2>
+      <div class="gallery-grid">
+        <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&q=80&w=400" alt="Family Moment">
+        <img src="https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&q=80&w=400" alt="Wedding Day">
+        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&q=80&w=400" alt="Nature Walk">
+        <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&q=80&w=400" alt="Landscape">
+      </div>
+    </section>
+
+    <section class="section tributes-section">
+      <h2>Tributes & Condolences</h2>
+      
+      <div class="candle-container">
+        <div class="candle" id="candle">
+          <div class="flame" id="flame"></div>
+          <div class="wick"></div>
+        </div>
+        <button id="lightCandleBtn" class="btn-primary">Light a Virtual Candle</button>
+        <p class="candle-counter"><span id="candleCount">42</span> candles lit in Arthur's memory</p>
+      </div>
+
+      <form id="tributeForm" class="tribute-form">
+        <h3>Leave a Message</h3>
+        <input type="text" id="authorName" placeholder="Your Name" required>
+        <textarea id="messageText" rows="4" placeholder="Share a cherished memory or message of sympathy..." required></textarea>
+        <button type="submit" class="btn-secondary">Post Message</button>
+      </form>
+
+      <div id="messagesList" class="messages-list">
+        <div class="message-card">
+          <p class="message-author">Sarah & David</p>
+          <p class="message-body">"Arthur was a true gentleman. We will deeply miss his warm smile and endless stories."</p>
+          <span class="message-date">August 12, 2026</span>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>Powered by <strong>MemorialQR</strong> &copy; 2026</p>
+  </footer>
+
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
