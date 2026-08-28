@@ -45,12 +45,35 @@ candleRef.on('value', (snapshot) => {
   candleCountSpan.textContent = count;
 });
 
-// 2. Bezpečné pripočítanie sviečky po kliknutí (transakcia)
+// Zvýšenie počtu sviečok s obmedzením na 24 hodín
 lightCandleBtn.addEventListener('click', () => {
+  const lastLit = localStorage.getItem('lastLitCandle');
+  const now = Date.now();
+  const twentyFourHours = 24 * 60 * 60 * 1000; // 24 hodín v milisekundách
+
+  // 1. Kontrola, či už uplynulo 24 hodín
+  if (lastLit && (now - lastLit < twentyFourHours)) {
+    const timeLeftMs = twentyFourHours - (now - lastLit);
+    const hoursLeft = Math.ceil(timeLeftMs / (1000 * 60 * 60));
+    
+    alert(`Sviečku ste už dnes zapálili. Ďalšiu môžete zapáliť o ${hoursLeft} hod.`);
+    return;
+  }
+
+  // 2. Ak je všetko v poriadku, navýšime počítadlo v databáze
   candleRef.transaction((currentCount) => {
     return (currentCount || 0) + 1;
+  }, (error, committed) => {
+    if (committed) {
+      // 3. Po úspešnom zápise uložíme aktuálny čas do zariadenia
+      localStorage.setItem('lastLitCandle', now);
+      alert("Sviečka bola úspešne zapálená. Ďakujeme.");
+    } else if (error) {
+      console.error("Chyba pri zápise:", error);
+    }
   });
 });
+
 
 
   // Guestbook Form Submission Handling
