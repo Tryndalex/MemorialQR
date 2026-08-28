@@ -114,4 +114,33 @@ function escapeHTML(str) {
   );
 }
 
+// --- MODÁLNE OKNO PRE GALÉRIU (LIGHTBOX) ---
+
+const modal = document.getElementById('imageModal');
+const modalImg = document.getElementById('modalImg');
+const modalCaption = document.getElementById('modalCaption');
+const modalClose = document.getElementById('modalClose');
+const galleryImages = document.querySelectorAll('.gallery-grid img');
+
+// Otvorenie modálneho okna po kliknutí na obrázok
+galleryImages.forEach((img) => {
+  img.addEventListener('click', () => {
+    modal.style.display = 'block';
+    modalImg.src = img.src;
+    modalCaption.textContent = img.alt || ''; // Použije alt text ako popisok (ak existuje)
+  });
+});
+
+// Zatvorenie kliknutím na tlačidlo X
+modalClose.addEventListener('click', () => {
+  modal.style.display = 'none';
+});
+
+// Zatvorenie kliknutím mimo obrázka (na tmavé pozadie)
+modal.addEventListener('click', (e) => {
+  if (e.target === modal) {
+    modal.style.display = 'none';
+  }
+});
+
 
