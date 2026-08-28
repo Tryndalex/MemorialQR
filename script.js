@@ -19,6 +19,40 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // Konfigurácia Firebase projektu
+const firebaseConfig = {
+  apiKey: "172160112509", // Nájdete v nastaveniach projektu vo Firebase Console
+  authDomain: "memorial-qr-app.firebaseapp.com",
+  databaseURL: "https://memorial-qr-app-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "memorial-qr-app",
+  storageBucket: "memorial-qr-app.appspot.com",
+  messagingSenderId: "172160112509",
+  appId: "memorial-qr-app" // Nájdete v nastaveniach projektu vo Firebase Console
+};
+
+// Inicializácia Firebase
+firebase.initializeApp(firebaseConfig);
+const database = firebase.database();
+const candleRef = database.ref('candleCounter');
+
+// Získanie HTML elementov
+const candleCountSpan = document.getElementById('candleCount');
+const lightCandleBtn = document.getElementById('lightCandleBtn');
+
+// 1. Načítanie a aktualizácia počtu sviečok v reálnom čase
+candleRef.on('value', (snapshot) => {
+  const count = snapshot.val() || 0;
+  candleCountSpan.textContent = count;
+});
+
+// 2. Bezpečné pripočítanie sviečky po kliknutí (transakcia)
+lightCandleBtn.addEventListener('click', () => {
+  candleRef.transaction((currentCount) => {
+    return (currentCount || 0) + 1;
+  });
+});
+
+
   // Guestbook Form Submission Handling
   const form = document.getElementById('tributeForm');
   const messagesList = document.getElementById('messagesList');
