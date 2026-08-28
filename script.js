@@ -114,3 +114,72 @@ lightCandleBtn.addEventListener('click', () => {
     );
   }
 });
+
+// Referencia na uzol s komentármi v databáze
+const commentsRef = database.ref('comments');
+
+// Získanie HTML elementov formulára a zoznamu správ
+const tributeForm = document.getElementById('tributeForm');
+const authorNameInput = document.getElementById('authorName');
+const messageTextInput = document.getElementById('messageText');
+const messagesList = document.getElementById('messagesList');
+
+// 1. Odosielanie komentárov do Firebase
+tributeForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  const newComment = {
+    author: authorNameInput.value.trim(),
+    body: messageTextInput.value.trim(),
+    timestamp: Date.now(),
+    // Formátovanie dátumu na "28. augusta 2026"
+    dateString: new Date().toLocaleDateString('sk-SK', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    })
+  };
+
+  // Uloženie do Realtime Database pod unikátnym kľúčom
+  commentsRef.push(newComment)
+    .then(() => {
+      tributeForm.reset(); // Vyčistenie formulára po úspešnom odoslaní
+    })
+    .catch((error) => {
+      console.error("Chyba pri odosielaní komentára:", error);
+    });
+});
+
+// 2. Načítanie komentárov z Firebase v reálnom čase
+commentsRef.on('value', (snapshot) => {
+  // Vyčistíme statické komentáre z HTML
+  messagesList.innerHTML = '';
+
+  const comments = [];
+  snapshot.forEach((childSnapshot) => {
+    comments.push({
+      id: childSnapshot.key,
+      ...childSnapshot.val()
+    });
+  });
+
+  // Zoradíme od najnovšieho po najstarší a vykreslíme do HTML
+  comments.reverse().forEach((comment) => {
+    const messageCard = document.createElement('div');
+    messageCard.className = 'message-card';
+
+    messageCard.innerHTML = `
+      <p class="message-author">${escapeHTML(comment.author)}</p>
+      <p class="message-body">"${escapeHTML(comment.body)}"</p>
+      <span class="message-date">${comment.dateString}</span>
+    `;
+    messagesList.appendChild(messageCard);
+  });
+});
+
+// Pomocná funkcia na ochranu pred škodlivým kódom (XSS)
+function escapeHTML(str) {
+  return str.replace(/[&<>'"]/g, 
+    tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
+  );
+}
