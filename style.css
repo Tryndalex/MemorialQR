@@ -304,3 +304,77 @@ footer {
   color: var(--text-muted);
   border-top: 1px solid #E0E0E0;
 }
+
+/* Úprava kurzora na galérii */
+.gallery-grid img {
+  cursor: pointer;
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.gallery-grid img:hover {
+  transform: scale(1.02);
+  filter: grayscale(0%);
+}
+
+/* Modálne okno (Pozadie na celú obrazovku) */
+.modal {
+  display: none; 
+  position: fixed; 
+  z-index: 1000; 
+  padding-top: 60px; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgba(0, 0, 0, 0.9); 
+  backdrop-filter: blur(4px);
+}
+
+/* Veľký obrázok */
+.modal-content {
+  margin: auto;
+  display: block;
+  max-width: 90%;
+  max-height: 80vh;
+  border-radius: 6px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+  animation: zoom 0.3s ease-in-out;
+}
+
+/* Popis pod fotkou */
+.modal-caption {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  text-align: center;
+  color: #ccc;
+  padding: 10px 0;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+}
+
+/* Animácia otvorenia */
+@keyframes zoom {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* Tlačidlo na zatvorenie (X) */
+.modal-close {
+  position: absolute;
+  top: 15px;
+  right: 25px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.modal-close:hover,
+.modal-close:focus {
+  color: var(--accent);
+  text-decoration: none;
+}
