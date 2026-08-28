@@ -1,12 +1,12 @@
-// 1. Vaša Firebase konfigurácia
+// 1. Firebase konfigurácia
 const firebaseConfig = {
-  apiKey: "VÁŠ_API_KEY", // <-- SEM doplňte váš skutočný API kľúč z Firebase Console
+  apiKey: "172160112509", 
   authDomain: "memorial-qr-app.firebaseapp.com",
   databaseURL: "https://memorial-qr-app-default-rtdb.europe-west1.firebasedatabase.app",
   projectId: "memorial-qr-app",
   storageBucket: "memorial-qr-app.appspot.com",
   messagingSenderId: "172160112509",
-  appId: "VÁŠ_APP_ID" // <-- SEM doplňte vaše skutočné App ID z Firebase Console
+  appId: "memorial-qr-app" 
 };
 
 // 2. Inicializácia (bez importov!)
@@ -113,4 +113,5 @@ function escapeHTML(str) {
     tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
   );
 }
+
 
