@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memorial QR</title>
+    <style>
+        /* Odstránenie okrajov a nastavenie pozadia */
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #000; /* Čierne pozadie počas načítavania */
+        }
+
+        /* Video na celú obrazovku */
+        #intro-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Video sa prispôsobí obrazovke bez skreslenia */
+        }
+    </style>
+</head>
+<body>
+
+    <video id="intro-video" autoplay muted playsinline>
+        <source src="video.mp4" type="video/mp4">
+        Váš prehliadač nepodporuje prehrávanie videí.
+    </video>
+
+    <script>
+        const video = document.getElementById('intro-video');
+
+        // Po skončení videa presmeruje na novú stránku
+        video.addEventListener('ended', function() {
+            window.location.href = 'hlavna-stranka.html'; // Zmeňte na adresu vašej cieľovej stránky
+        });
+    </script>
+
+</body>
+</html>
